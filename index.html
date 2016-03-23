@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ReloJ Color</title>
+        <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script src="script.js"></script>
+    	<style>
+            body{
+            	margin: 0;
+            }
+    		#reloj{
+                width: 100%;
+                height: 100%;
+    		}
+            #time{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 10vw;
+            }
+    	</style>
+    </head>
+
+    <body>
+        <div id="reloj">
+            <div id="time">
+                #<span id="hora"></span><span id="minuto"></span><span id="segundo"></span>
+            </div>
+        </div>
+    </body>
+</html>
