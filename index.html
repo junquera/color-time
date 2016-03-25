@@ -3,7 +3,39 @@
     <head>
         <title>ReloJ Color</title>
         <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-        <script src="script.js"></script>
+        <script src="node_modules/angular/angular.min.js"></script>
+        <script>
+            angular.module('myFilters',[]).filter('hex2rgb', function($filter){
+                function hex2rgb(value){
+                    var decenas = parseInt(parseInt(value)/10);
+                    var unidades = parseInt(parseInt(value)) - decenas * 10;
+
+                    return parseInt(decenas * 16 + unidades);
+                }
+                return function(input, inverted){
+                    var H = hex2rgb($filter('date')(input, 'HH', null));
+                    var m = hex2rgb($filter('date')(input, 'mm', null));
+                    var s = hex2rgb($filter('date')(input, 'ss', null));
+
+                    if(inverted){
+                        H = 255 - H;
+                        m = 255 - m;
+                        s = 255 - s;
+                    }
+
+                    return 'rgb(' + H + ',' + m + ',' + s +')';
+                };
+            });
+            angular.module('RelojColor', ['myFilters']).controller('ClockController', ['$scope', '$timeout', function($scope, $timeout){
+                function actualiza(){
+                    $scope.time = new Date();
+                    $timeout(actualiza, 1000);
+                }
+                actualiza();
+            }]);
+
+        </script>
+        <!-- <script src="script.js"></script> -->
     	<style>
             @font-face{
                 font-family: 'Digital-7';
@@ -15,6 +47,7 @@
     		#reloj{
                 width: 100%;
                 height: 100%;
+                position: absolute;
     		}
             #time{
                 position: absolute;
@@ -27,10 +60,10 @@
     	</style>
     </head>
 
-    <body>
-        <div id="reloj">
-            <div id="time">
-                #<span id="hora"></span><span id="minuto"></span><span id="segundo"></span>
+    <body ng-app="RelojColor">
+        <div id="reloj" style="background-color: {{time|hex2rgb:false}}" ng-controller="ClockController">
+            <div id="time" style="color: {{time|hex2rgb:true}}">
+                #{{time|date: 'HH'}}{{time|date: 'mm'}}{{time|date: 'ss'}}
             </div>
         </div>
     </body>
