@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="RelojColor">
     <head>
         <title>ReloJ Color</title>
-        <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
-        <script src="script/angular/angular.min.js"></script>
+        <meta name="theme-color" content="#141292">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+        <script src="script/jquery.min.js"></script>
+        <script src="script/angular.min.js"></script>
         <script>
             angular.module('myFilters',[]).filter('hex2rgb', function($filter){
                 function hex2rgb(value){
@@ -60,7 +63,7 @@
     	</style>
     </head>
 
-    <body ng-app="RelojColor">
+    <body>
         <div id="reloj" style="background-color: {{time|hex2rgb:false}}" ng-controller="ClockController">
             <div id="time" style="color: {{time|hex2rgb:true}}">
                 #{{time|date: 'HH'}}{{time|date: 'mm'}}{{time|date: 'ss'}}
