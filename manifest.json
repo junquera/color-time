@@ -1,0 +1,9 @@
+{
+  "lang": "es",
+  "name": "ReloJ Color",
+  "short_name": "RJC",
+  "start_url": "/index.html",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "theme_color": "#141292"
+ }

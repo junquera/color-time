@@ -4,9 +4,10 @@
         <title>ReloJ Color</title>
         <meta name="theme-color" content="#141292">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="manifest" href="manifest.json">
 
         <script src="script/jquery.min.js"></script>
-        <script src="script/angular.min.js"></script>
+        <script src="script/angular/angular.min.js"></script>
         <script>
             angular.module('myFilters',[]).filter('hex2rgb', function($filter){
                 function hex2rgb(value){
